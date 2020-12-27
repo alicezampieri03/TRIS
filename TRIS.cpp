@@ -6,63 +6,84 @@
 using namespace std;
 
 int main (void){
-	int i=0, j=0, m[r][c];
-	int x1, x2, y1, y2; 
-
-  	for (i=0; i<r; i++){
+	int m[r][c];
+	char giocatore1[10], giocatore2[10];
+	int i=0, j=0, x, y;
+	
+	for (i=0; i<r; i++){
         for (j=0; j<c; j++){
             m[i][j] =0;
             cout<<m[i][j]<<"  ";
         }
     cout<<endl;
     }
-//Faccio il ciclo per riempire la nostra matrice con l'1 e il 2 
-	
-	for(i=0; i<m[x1][y1]; i++){
-		for(j=0; j<m[x2][y2]; j++){
-			cout<<"Dove vuoi inserire la mossa(x) Giocatore 1: ";
-			cin>>x1;
-			cout<<"Dove vuoi inserire la mossa(y) Giocatore 1: ";
-			cin>>y1;
-			cout<<"Dove vuoi inserire la mossa(x) Giocatore 2: ";
-			cin>>x2;
-			cout<<"Dove vuoi inserire la mossa(y) Giocatore 2: ";
-			cin>>y2;
-			
-			//chiedere le mosse al giocatore 1
-			if((m[i][j]==0)||(m[i][j]==0)){//controllo che la casella sia vuota
-		 		cout<<"Casella già occupata, inserisci di nuovo(x,y)";
-		 		cin>>x1;
-				cin>>y1;
-			}	
-			else if((x1>2)||(x1<0)||(y1>2)||(y1<0)){//controllo che le coordinate siano giuste
-		 		cout<<"Coordinate non valide, inserisci di nuovo(x,y)";
-				cin>>x1;
-				cin>>y1;
-			}
-				else{
-				m[y1][x1]='1';
-				cout<<m[i][j]<<" ";
-				cout<<endl;
-			}
-			
-			if((m[i][j]==0)||(m[i][j]==0)){//controllo che la casella sia vuota
-		 		cout<<"Casella già occupata, inserisci di nuovo(x,y)";
-		 		cin>>x2;
-				cin>>y2;
-			}
-		 	// Chiedere le mosse al giocatore 2 
-			else if((x2>2)||(x2<0)||(y2>2)||(y2<0)){//controllo che le coordinate siano giuste
-		 		cout<<"Coordinate non valide, inserisci di nuovo(x,y)";
-				cin>>x2;
-				cin>>y2;
-			}
-				else{
-				m[y2][x2]='2';
-				cout<<m[i][j]<<" ";
-				cout<<endl;
-			}
-		}
-	}
-	
+    
+	cout<<"giocatore 1 inserisci il nome: ";
+	cin>>giocatore1;
+	cout<<giocatore1<<" usa la X"<<endl;
+	cout<<"giocatore 2 inserisci il nome: ";
+	cin>>giocatore2;
+	cout<<giocatore2<<" usa la O"<<endl;
+
+//giocatore 1
+	cout<<giocatore1<<" dove vuoi inserire la mossa(x,y): ";
+	cin>>x;
+	cin>>y;
+	if ((m[i][j] == 'X') || (m[i][j] == 'O')||(x>2)||(x<0)||(y>2)||(y<0)){
+        for (i=0; i<r; i++) {
+            for (j=0; j<c; j++) {
+                cout<<m[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    } else{
+        m[i][j] = 'X'; //non stampa la X
+        for (i=0; i<r; i++) {
+            for (j=0; j<c; j++) {
+                cout<<m[i][j]<<" ";
+            }
+        cout<<endl;
+    	}
+    }
+
+//giocatore 2
+	cout<<giocatore2<<" dove vuoi inserire la mossa(x,y): ";
+	cin>>x;
+	cin>>y;
+	if ((m[i][j] == 'X') || (m[i][j] == 'O')||(x>2)||(x<0)||(y>2)||(y<0)){
+        for (i=0; i<r; i++) {
+            for (j=0; j<c; j++) {
+                cout<<m[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    } else{
+        m[i][j] = 'O'; //non stampa la O
+        for (i=0; i<r; i++) {
+            for (j=0; j<c; j++) {
+                cout<<m[i][j]<<" ";
+            }
+        cout<<endl;
+        }
+    }
 }
+
+
+/* CONTROLLO VITTORIE giocatore 1
+
+	if (((tris[0][0] == 'X') && (tris[0][1] == 'X') && (tris[0][2] == 'X')) || ((tris[1][0] == 'X') && (tris[1][1] == 'X') && (tris[1][2] == 'X')) || ((tris[2][0] == 'X') && (tris[2][1] == 'X') && (tris[2][2] == 'X'))) {
+            vit = giocatore1;
+   
+    }
+
+    if (((tris[0][0] == 'X') && (tris[1][0] == 'X') && (tris[2][0] == 'X')) || ((tris[0][1] == 'X') && (tris[1][1] == 'X') && (tris[2][1] == 'X')) || ((tris[0][2] == 'X') && (tris[1][2] == 'X') && (tris[2][2] == 'X'))) {
+            vit = giocatore1;
+
+    }
+
+    if (((tris[0][0] == 'X') && (tris[1][1] == 'X') && (tris[2][2] == 'X')) || ((tris[2][0] == 'X') && (tris[1][1] == 'X') && (tris[0][2] == 'X'))) {
+            vit = giocatore1;
+  
+    }
+
+*/
