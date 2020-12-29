@@ -5,10 +5,52 @@
 #define c 3
 using namespace std;
 
+int controllo_v(int m[0][0]){
+	int k;
+ 	for(k=0;k<3;k++){//controllo righe
+ 		if(m[k][0]+m[k][1]-2*(m[k][2])==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
+	 		if(m[k][0]=='X'){
+	 			return 1;//vince il giocatore 1
+	 		}
+			 if(m[k][0]=='O'){
+	 			return 2;//vince il giocatore 2
+	 		}
+ 		}
+ 	}
+	for(k=0;k<3;k++){// controllo se ci sono tris sulle colonne
+		if(m[0][k]+m[1][k]-2*(m[2][k])==0){
+			if(m[0][k]=='X'){//se questo if è vero vuol dire che il giocatore 1 ha vinto
+				return 1;
+			}
+			if(m[0][k]=='O'){
+				return 2;
+			}
+		}
+ 	}
+
+	if(m[0][0]+m[1][1]-2*(m[2][2])==0){//controllo diagonale 1
+		if(m[1][1]=='X'){
+			return 1;
+		}
+		if(m[1][1]=='O'){
+			return 2;
+		}
+	}
+	if(m[0][2]+m[1][1]-2*(m[2][0])==0){//controllo diagonale 2
+		if(m[0][2]=='X'){//se questo if è vero vuol dire che il giocatore 1 ha vinto
+ 			return 1;
+ 		}
+		if(m[0][2]=='O'){
+			return 2;
+		}
+	}
+	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
+}
+
 int main (void){
 	int m[r][c];
 	char giocatore1[10], giocatore2[10];
-	int i=0, j=0, x, y;
+	int i=0, j=0, x, y, conta=0; //conta è un contatore per le caselle riempite
 	
 	for (i=0; i<r; i++){
         for (j=0; j<c; j++){
@@ -24,66 +66,41 @@ int main (void){
 	cout<<"giocatore 2 inserisci il nome: ";
 	cin>>giocatore2;
 	cout<<giocatore2<<" usa la O"<<endl;
+	
+	do{
+		cout<<giocatore1<<" dove vuoi inserire la X (x,y) : ";
+		cin>>x;
+		cin>>y;
+		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
+			return 0;
+			//cout<<"errore";
+			//cin>>x;
+			//cin>>y;
+		}
+		else{
+			m[i][j]='X';
+			cout<<m[i][j]<<"  ";
+			conta++;//contatore delle caselle riempite
+		}
+		
+		if(conta==9){//se c arriva a 9 vuol dire che sono state riempite tutte le celle
+	 		return 0;
+		}	
+		
+		cout<<giocatore2<<" dove vuoi inserire la X (x,y) : ";
+		cin>>x;
+		cin>>y;
+		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
+			return 0;
+			//cout<<"errore";
+			//cin>>x;
+			//cin>>y;
+		}
+		else{
+		m[i][j]='X';
+		cout<<m[i][j]<<"  ";
+		conta++;//contatore delle caselle riempite
+		}			
+	}while(conta<9);
 
-//giocatore 1
-	cout<<giocatore1<<" dove vuoi inserire la mossa(x,y): ";
-	cin>>x;
-	cin>>y;
-	if ((m[i][j] == 'X') || (m[i][j] == 'O')||(x>2)||(x<0)||(y>2)||(y<0)){
-        for (i=0; i<r; i++) {
-            for (j=0; j<c; j++) {
-                cout<<m[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-    } else{
-        m[i][j] = 'X'; //non stampa la X
-        for (i=0; i<r; i++) {
-            for (j=0; j<c; j++) {
-                cout<<m[i][j]<<" ";
-            }
-        cout<<endl;
-    	}
-    }
-
-//giocatore 2
-	cout<<giocatore2<<" dove vuoi inserire la mossa(x,y): ";
-	cin>>x;
-	cin>>y;
-	if ((m[i][j] == 'X') || (m[i][j] == 'O')||(x>2)||(x<0)||(y>2)||(y<0)){
-        for (i=0; i<r; i++) {
-            for (j=0; j<c; j++) {
-                cout<<m[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-    } else{
-        m[i][j] = 'O'; //non stampa la O
-        for (i=0; i<r; i++) {
-            for (j=0; j<c; j++) {
-                cout<<m[i][j]<<" ";
-            }
-        cout<<endl;
-        }
-    }
 }
-
-
-/* CONTROLLO VITTORIE giocatore 1
-
-	if (((tris[0][0] == 'X') && (tris[0][1] == 'X') && (tris[0][2] == 'X')) || ((tris[1][0] == 'X') && (tris[1][1] == 'X') && (tris[1][2] == 'X')) || ((tris[2][0] == 'X') && (tris[2][1] == 'X') && (tris[2][2] == 'X'))) {
-            vit = giocatore1;
-   
-    }
-
-    if (((tris[0][0] == 'X') && (tris[1][0] == 'X') && (tris[2][0] == 'X')) || ((tris[0][1] == 'X') && (tris[1][1] == 'X') && (tris[2][1] == 'X')) || ((tris[0][2] == 'X') && (tris[1][2] == 'X') && (tris[2][2] == 'X'))) {
-            vit = giocatore1;
-
-    }
-
-    if (((tris[0][0] == 'X') && (tris[1][1] == 'X') && (tris[2][2] == 'X')) || ((tris[2][0] == 'X') && (tris[1][1] == 'X') && (tris[0][2] == 'X'))) {
-            vit = giocatore1;
-  
-    }
-
-*/
