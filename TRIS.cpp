@@ -5,7 +5,22 @@
 #define c 3
 using namespace std;
 
-int controllo_v(int m[0][0]){
+class Tris{
+	private:
+		char table[3][3];
+		
+	public:
+		Tris(void); //inizializzo una matrice a 0
+		void giocatore1(string);
+		void giocatore2(string);
+		void setX(int x);
+		void setY(int y);
+		int getX(void);
+		int getY(void);
+		Tris controllo_v(Tris m);
+};
+
+int Tris::controllo_v(Tris int m[0][0]){
 	int k;
  	for(k=0;k<3;k++){//controllo righe
  		if(m[k][0]+m[k][1]-2*(m[k][2])==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
@@ -60,47 +75,50 @@ int main (void){
     cout<<endl;
     }
     
-	cout<<"giocatore 1 inserisci il nome: ";
+	cout<<"Giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
-	cout<<giocatore1<<" usa la X"<<endl;
-	cout<<"giocatore 2 inserisci il nome: ";
+	cout<<giocatore1<<": usa la X"<<endl;
+	cout<<"Giocatore 2 inserisci il nome: ";
 	cin>>giocatore2;
-	cout<<giocatore2<<" usa la O"<<endl;
+	cout<<giocatore2<<": usa la O"<<endl;
 	
-	do{
-		cout<<giocatore1<<" dove vuoi inserire la X (x,y) : ";
-		cin>>x;
-		cin>>y;
-		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
-			return 0;
-			//cout<<"errore";
-			//cin>>x;
-			//cin>>y;
-		}
-		else{
+	for(i=0; i<9; i++){
+		do{
+			cout<<giocatore1<<" Dove vuoi inserire la X (x,y) : ";
+			cin>>x;
+			cin>>y;
+			if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
+				return 0;
+				cout<<"errore";
+				cin>>x;
+				cin>>y;
+			}
+			else{
+				m[i][j]='X';
+				cout<<m[i][j]<<"  ";
+				conta++;//contatore delle caselle riempite
+			}
+			
+			if(conta==9){//se c arriva a 9 vuol dire che sono state riempite tutte le celle
+		 		return 0;
+			}	
+			
+			cout<<giocatore2<<" Dove vuoi inserire la O (x,y) : ";
+			cin>>x;
+			cin>>y;
+			if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
+				return 0;
+				cout<<"errore";
+				cin>>x;
+				cin>>y;
+			}
+			else{
 			m[i][j]='X';
 			cout<<m[i][j]<<"  ";
 			conta++;//contatore delle caselle riempite
-		}
-		
-		if(conta==9){//se c arriva a 9 vuol dire che sono state riempite tutte le celle
-	 		return 0;
-		}	
-		
-		cout<<giocatore2<<" dove vuoi inserire la X (x,y) : ";
-		cin>>x;
-		cin>>y;
-		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
-			return 0;
-			//cout<<"errore";
-			//cin>>x;
-			//cin>>y;
-		}
-		else{
-		m[i][j]='X';
-		cout<<m[i][j]<<"  ";
-		conta++;//contatore delle caselle riempite
-		}			
-	}while(conta<9);
+			}			
+		}while(conta<9);
 
+	}	
+		
 }
