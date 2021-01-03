@@ -1,13 +1,11 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#define r 3
-#define c 3
 using namespace std;
 
 class Tris{
 	private:
-		char table[3][3];
+		char m[3][3];
 		
 	public:
 		Tris(void); //inizializzo una matrice a 0
@@ -17,13 +15,13 @@ class Tris{
 		void setY(int y);
 		int getX(void);
 		int getY(void);
-		Tris controllo_v(Tris m);
+		Tris controllo_v(Tris m[3][3]);
 };
 
-int Tris::controllo_v(Tris int m[0][0]){
+Tris Tris::controllo_v(Tris m[3][3]){
 	int k;
  	for(k=0;k<3;k++){//controllo righe
- 		if(m[k][0]+m[k][1]-2*(m[k][2])==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
+ 		if( m[k][0] + m[k][1] - 2 * (m[k][2]) ==0 ){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
 	 		if(m[k][0]=='X'){
 	 			return 1;//vince il giocatore 1
 	 		}
@@ -62,63 +60,74 @@ int Tris::controllo_v(Tris int m[0][0]){
 	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
 }
 
-int main (void){
-	int m[r][c];
+int main(void){
+	//////////
+	char m[3][3];
+	int i=0, j=0, conta=0, vitt=0, x, y;
 	char giocatore1[10], giocatore2[10];
-	int i=0, j=0, x, y, conta=0; //conta è un contatore per le caselle riempite
 	
-	for (i=0; i<r; i++){
-        for (j=0; j<c; j++){
-            m[i][j] =0;
-            cout<<m[i][j]<<"  ";
-        }
-    cout<<endl;
-    }
-    
-	cout<<"Giocatore 1 inserisci il nome: ";
+	//////////
+	cout<<"griglia vuota"<<endl;
+	for (i=0; i<3; i++) {
+		for (j=0; j<3; j++) {
+			m[i][j]='-';
+			cout<<m[i][j]<<"  ";
+		}
+		cout<<endl;
+	}
+	
+	//////////
+	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
-	cout<<giocatore1<<": usa la X"<<endl;
-	cout<<"Giocatore 2 inserisci il nome: ";
+	cout<<giocatore1<<" usa la X"<<endl;
+	cout<<"giocatore 2 inserisci il nome: ";
 	cin>>giocatore2;
-	cout<<giocatore2<<": usa la O"<<endl;
+	cout<<giocatore2<<" usa la O"<<endl;
 	
-	for(i=0; i<9; i++){
-		do{
-			cout<<giocatore1<<" Dove vuoi inserire la X (x,y) : ";
+	do{
+		cout<<giocatore1<<" dove vuoi inserire la X (x,y) : ";
+		cin>>x;
+		cin>>y;
+		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
+			cout<<"errore, riprova";
 			cin>>x;
 			cin>>y;
-			if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
-				return 0;
-				cout<<"errore";
-				cin>>x;
-				cin>>y;
-			}
-			else{
-				m[i][j]='X';
-				cout<<m[i][j]<<"  ";
-				conta++;//contatore delle caselle riempite
-			}
-			
-			if(conta==9){//se c arriva a 9 vuol dire che sono state riempite tutte le celle
-		 		return 0;
-			}	
-			
-			cout<<giocatore2<<" Dove vuoi inserire la O (x,y) : ";
-			cin>>x;
-			cin>>y;
-			if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
-				return 0;
-				cout<<"errore";
-				cin>>x;
-				cin>>y;
-			}
-			else{
+		}
+		else{
 			m[i][j]='X';
 			cout<<m[i][j]<<"  ";
 			conta++;//contatore delle caselle riempite
-			}			
-		}while(conta<9);
-
-	}	
+		}
 		
+		if(conta==9){//se c arriva a 9 vuol dire che sono state riempite tutte le celle
+	 		return 0;
+		}	
+		
+		cout<<giocatore2<<" dove vuoi inserire la X (x,y) : ";
+		cin>>x;
+		cin>>y;
+		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
+			cout<<"errore, riprova";
+			cin>>x;
+			cin>>y;
+		}
+		else{
+		m[i][j]='O';
+		cout<<m[i][j]<<"  ";
+		conta++;//contatore delle caselle riempite
+		}			
+	}while(conta<9);
+	
+	vitt=Tris.controllo_v(m[3][3]);
+	
+	if (vitt==1){
+		cout<<giocatore1<<" hai vinto!"<<endl;
+	}
+	else if(vitt==2){
+		cout<<giocatore2<<" hai vinto!"<<endl;
+	}
+	else{
+		cout<<"nessuno ha vinto!"<<endl;
+	}
+	
 }
