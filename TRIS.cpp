@@ -2,8 +2,9 @@
 #include <ctime>
 #include <cstdlib>
 #include<cmath>
+#include<fstream>
 using namespace std;
-
+/*
 class Tris{
 	private:
 		char m[3][3];
@@ -19,8 +20,8 @@ class Tris{
 		int controllo_v();
 		
 };
-
-int Tris::controllo_v(){
+*/
+int controllo_v(int m[0][0]){
 	int k;
  	for(k=0;k<3;k++){//controllo righe
  		if(m[k][0] + m[k][1] - 2 * (m[k][2]) ==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
@@ -62,10 +63,10 @@ int Tris::controllo_v(){
 	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
 }
 
-int stringa_vuota(int i, int j, char m[][]){  //mi sembrava più carino farlo con un funzione --> però non funziona 
-    cout<<"griglia vuota"<<endl;
-	for (i=0; i<3; i++) {
-		for (j=0; j<3; j++) {
+int stringa_vuota(char m[0][0]){  //mi sembrava più carino farlo con un funzione --> però non funziona 
+    //cout<<"griglia vuota"<<endl;
+	for(i=0; i<3; i++){
+		for (j=0; j<3; j++){
 			m[i][j]='-';
 			cout<<m[i][j]<<"  ";
 		}
@@ -74,10 +75,15 @@ int stringa_vuota(int i, int j, char m[][]){  //mi sembrava più carino farlo co
 }
 
 int main(void)
-    int stringa_vuota(int i, int j, char m[i][j]);
+    int stringa_vuota(char m[][]);
 	char m[3][3];
 	int i=0, j=0, conta=0, vitt=0, x, y;
 	char giocatore1[10], giocatore2[10];
+	
+	ofstream file;
+	file.open("PartitaTris.txt");
+	
+	cout<<"griglia vuota"<<endl;
 	
 	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
@@ -133,4 +139,3 @@ int main(void)
 	}
 	
 }
-
