@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include<cmath>
 using namespace std;
 
 class Tris{
@@ -15,13 +16,14 @@ class Tris{
 		void setY(int y);
 		int getX(void);
 		int getY(void);
-		Tris controllo_v(Tris m[3][3]);
+		int controllo_v();
+		
 };
 
-Tris Tris::controllo_v(Tris m[3][3]){
+int Tris::controllo_v(){
 	int k;
  	for(k=0;k<3;k++){//controllo righe
- 		if( m[k][0] + m[k][1] - 2 * (m[k][2]) ==0 ){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
+ 		if(m[k][0] + m[k][1] - 2 * (m[k][2]) ==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
 	 		if(m[k][0]=='X'){
 	 			return 1;//vince il giocatore 1
 	 		}
@@ -60,14 +62,8 @@ Tris Tris::controllo_v(Tris m[3][3]){
 	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
 }
 
-int main(void){
-	//////////
-	char m[3][3];
-	int i=0, j=0, conta=0, vitt=0, x, y;
-	char giocatore1[10], giocatore2[10];
-	
-	//////////
-	cout<<"griglia vuota"<<endl;
+int stringa_vuota(int i, int j, char m[][]){  //mi sembrava più carino farlo con un funzione --> però non funziona 
+    cout<<"griglia vuota"<<endl;
 	for (i=0; i<3; i++) {
 		for (j=0; j<3; j++) {
 			m[i][j]='-';
@@ -75,8 +71,14 @@ int main(void){
 		}
 		cout<<endl;
 	}
+}
+
+int main(void)
+    int stringa_vuota(int i, int j, char m[i][j]);
+	char m[3][3];
+	int i=0, j=0, conta=0, vitt=0, x, y;
+	char giocatore1[10], giocatore2[10];
 	
-	//////////
 	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
 	cout<<giocatore1<<" usa la X"<<endl;
@@ -131,3 +133,4 @@ int main(void){
 	}
 	
 }
+
