@@ -63,10 +63,11 @@ int controllo_v(int m[0][0]){
 	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
 }
 
-int stringa_vuota(char m[0][0]){  //mi sembrava più carino farlo con un funzione --> però non funziona 
+int stringa_vuota(char m[3][3]){  //mi sembrava più carino farlo con un funzione --> però non funziona 
     //cout<<"griglia vuota"<<endl;
-	for(i=0; i<3; i++){
-		for (j=0; j<3; j++){
+    int i=0, j=0;
+	for (i=0; i<3; i++) {
+		for (j=0; j<3; j++) {
 			m[i][j]='-';
 			cout<<m[i][j]<<"  ";
 		}
@@ -74,8 +75,11 @@ int stringa_vuota(char m[0][0]){  //mi sembrava più carino farlo con un funzion
 	}
 }
 
-int main(void)
-    int stringa_vuota(char m[][]);
+int controllo_v(char m[3][3]);
+int stringa_vuota(char m[3][3]);
+
+
+int main(void){
 	char m[3][3];
 	int i=0, j=0, conta=0, vitt=0, x, y;
 	char giocatore1[10], giocatore2[10];
@@ -83,8 +87,11 @@ int main(void)
 	ofstream file;
 	file.open("PartitaTris.txt");
 	
-	cout<<"griglia vuota"<<endl;
 	
+	cout<<"griglia vuota"<<endl;
+	m[3][3]=stringa_vuota(m);
+	cout<<m[3][3]<<endl;
+
 	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
 	cout<<giocatore1<<" usa la X"<<endl;
@@ -126,7 +133,7 @@ int main(void)
 		}			
 	}while(conta<9);
 	
-	vitt=Tris.controllo_v(m[3][3]);
+	vitt=Tris.controllo_v(m);
 	
 	if (vitt==1){
 		cout<<giocatore1<<" hai vinto!"<<endl;
@@ -138,4 +145,5 @@ int main(void)
 		cout<<"nessuno ha vinto!"<<endl;
 	}
 	
+	file.close("PartitaTris.txt");
 }
