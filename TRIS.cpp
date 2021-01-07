@@ -21,46 +21,55 @@ class Tris{
 		
 };
 */
-int controllo_v(int m[0][0]){
-	int k;
- 	for(k=0;k<3;k++){//controllo righe
- 		if(m[k][0] + m[k][1] - 2 * (m[k][2]) ==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare 0
-	 		if(m[k][0]=='X'){
+int controllo_v(char m[3][3]){
+	int i=0, j=o;
+ 	for(i=0;i<3;i++){
+ 		for(j=0;j<3;j++){
+ 			//controllo righe
+ 			if(i==1 && m[i][j]=='X' && m[i-1][j]=='X' && m[i+1][j]=='X'){//i=1 perchè inzio dal mezzo
 	 			return 1;//vince il giocatore 1
 	 		}
-			 if(m[k][0]=='O'){
+			else if (i==1 && m[i][j]=='O' && m[i-1][j]=='O' && m[i+1][j]=='O'){
 	 			return 2;//vince il giocatore 2
 	 		}
- 		}
- 	}
-	for(k=0;k<3;k++){// controllo se ci sono tris sulle colonne
-		if(m[0][k]+m[1][k]-2*(m[2][k])==0){
-			if(m[0][k]=='X'){//se questo if è vero vuol dire che il giocatore 1 ha vinto
-				return 1;
+	 		else{
+	 			return 0; //nessuno ha vinto
 			}
-			if(m[0][k]=='O'){
-				return 2;
+	 		
+	 		//controllo colonne
+	 		if(j==1 && m[i][j]=='X' && m[i][j-1]=='X' && m[i][j+1]=='X'){//j=1 perchè inzio dal mezzo
+	 			return 1;//vince il giocatore 1
+	 		}
+			else if(j==1 && m[i][j]=='O' && m[i][j-1]=='O' && m[i][j+1]=='O'){
+	 			return 2;//vince il giocatore 2
+	 		}
+	 		else{
+	 			return 0;
+			}
+	 		
+	 		//controllo diagonale 1
+	 		if (i==1 && j==1 && m[i][j]=='X' && m[i+1][j+1]=='X' && m[i-1][j-1]=='X'){
+				return 1;//vince il giocatore 1
+	 		}
+			else if (i==1 && j==1 && m[i][j]=='O' && m[i+1][j+1]=='O' && m[i-1][j-1]=='O'){
+	 			return 2;//vince il giocatore 2
+	 		}
+	 		else{
+	 			return 0;
+			 }
+			
+			//controllo diagonale 2
+			if (i==1 && j==1 && m[i][j]=='X' && m[i-1][j+1]=='X' && m[i+1][j-1]=='X'){
+				return 1;//vince il giocatore 1
+	 		}
+			else if (i==1 && j==1 && m[i][j]=='O' && m[i-1][j+1]=='O' && m[i+1][j-1]=='O'){
+	 			return 2;//vince il giocatore 2
+	 		}
+	 		else{
+	 			return 0;
 			}
 		}
- 	}
-
-	if(m[0][0]+m[1][1]-2*(m[2][2])==0){//controllo diagonale 1
-		if(m[1][1]=='X'){
-			return 1;
-		}
-		if(m[1][1]=='O'){
-			return 2;
-		}
-	}
-	if(m[0][2]+m[1][1]-2*(m[2][0])==0){//controllo diagonale 2
-		if(m[0][2]=='X'){//se questo if è vero vuol dire che il giocatore 1 ha vinto
- 			return 1;
- 		}
-		if(m[0][2]=='O'){
-			return 2;
-		}
-	}
-	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
+	} 
 }
 
 int stringa_vuota(char m[3][3]){  
@@ -94,7 +103,7 @@ int main(void){
 
 	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
-	cout<<giocatore1<<" usa la X"<<endl;
+	cout<<giocatore1<<" usa la X<<endl;
 	cout<<"giocatore 2 inserisci il nome: ";
 	cin>>giocatore2;
 	cout<<giocatore2<<" usa la O"<<endl;
