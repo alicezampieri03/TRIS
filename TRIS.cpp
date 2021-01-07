@@ -63,7 +63,7 @@ int controllo_v(int m[0][0]){
 	return 0; //se arrivo qui vuol dire che non ci sono stati tris e ritorno 0
 }
 
-int stringa_vuota(char m[3][3]){  //mi sembrava più carino farlo con un funzione --> però non funziona 
+int stringa_vuota(char m[3][3]){  
     //cout<<"griglia vuota"<<endl;
     int i=0, j=0;
 	for (i=0; i<3; i++) {
