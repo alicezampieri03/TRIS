@@ -24,7 +24,7 @@ class Tris{
 int controllo_v(int m[0][0]){
 	int k;
  	for(k=0;k<3;k++){//controllo righe
- 		if(m[k][0] + m[k][1] - 2 * (m[k][2]) ==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare0
+ 		if(m[k][0] + m[k][1] - 2 * (m[k][2]) ==0){//se c'è tris la somma delle prime 2 celle meno il doppio dell'ultima mi deve dare 0
 	 		if(m[k][0]=='X'){
 	 			return 1;//vince il giocatore 1
 	 		}
@@ -105,12 +105,14 @@ int main(void){
 		cin>>y;
 		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
 			cout<<"errore, riprova";
+		}
 			cin>>x;
 			cin>>y;
-		}
+	
 		else{
-			m[i][j]='X';
-			cout<<m[i][j]<<"  ";
+			m[3][3]='X';
+			cout<<m[3][3]<<"  ";
+			cout<<endl;
 			conta++;//contatore delle caselle riempite
 		}
 		
@@ -123,17 +125,19 @@ int main(void){
 		cin>>y;
 		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
 			cout<<"errore, riprova";
+		}
 			cin>>x;
 			cin>>y;
-		}
 		else{
-		m[i][j]='O';
-		cout<<m[i][j]<<"  ";
-		conta++;//contatore delle caselle riempite
-		}			
+			m[3][3]='O';
+			cout<<m[3][3]<<"  ";
+			cout<<endl;
+			conta++;//contatore delle caselle riempite
+		}
+		
 	}while(conta<9);
 	
-	vitt=Tris.controllo_v(m);
+	vitt=controllo_v(m);
 	
 	if (vitt==1){
 		cout<<giocatore1<<" hai vinto!"<<endl;
@@ -145,5 +149,5 @@ int main(void){
 		cout<<"nessuno ha vinto!"<<endl;
 	}
 	
-	file.close("PartitaTris.txt");
+	file.close();
 }
