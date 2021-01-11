@@ -21,8 +21,32 @@ class Tris{
 		
 };
 */
+void griglia(){
+    cout << "tris";
+    cout << "giocatore 1(X)  -  giocatore 2(O)" << endl << endl;
+    cout << endl;
+
+    cout << "     |     |     " << endl;
+    cout << "  " << "0" << "  |  " << "0" << "  |  " << "0" << endl;
+
+    cout << "_____|_____|_____" << endl;
+    cout << "     |     |     " << endl;
+
+   	cout << "  " << "0" << "  |  " << "0" << "  |  " << "0" << endl;
+
+    cout << "_____|_____|_____" << endl;
+    cout << "     |     |     " << endl;
+
+    cout << "  " << "0" << "  |  " << "0" << "  |  " << "0" << endl;
+
+    cout << "     |     |     " << endl << endl;
+}
+
+
+
+
 int controllo_v(char m[3][3]){
-	int i=0, j=o;
+	int i=0, j=0;
  	for(i=0;i<3;i++){
  		for(j=0;j<3;j++){
  			//controllo righe
@@ -86,6 +110,7 @@ int stringa_vuota(char m[3][3]){
 
 int controllo_v(char m[3][3]);
 int stringa_vuota(char m[3][3]);
+void griglia();
 
 
 int main(void){
@@ -98,12 +123,11 @@ int main(void){
 	
 	
 	cout<<"griglia vuota"<<endl;
-	m[3][3]=stringa_vuota(m);
-	cout<<m[3][3]<<endl;
+	griglia();
 
 	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
-	cout<<giocatore1<<" usa la X<<endl;
+	cout<<giocatore1<< "usa la X" <<endl;
 	cout<<"giocatore 2 inserisci il nome: ";
 	cin>>giocatore2;
 	cout<<giocatore2<<" usa la O"<<endl;
@@ -115,9 +139,6 @@ int main(void){
 		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
 			cout<<"errore, riprova";
 		}
-			cin>>x;
-			cin>>y;
-	
 		else{
 			m[3][3]='X';
 			cout<<m[3][3]<<"  ";
@@ -135,8 +156,6 @@ int main(void){
 		if((m[i][j]=='X')||(m[i][j]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
 			cout<<"errore, riprova";
 		}
-			cin>>x;
-			cin>>y;
 		else{
 			m[3][3]='O';
 			cout<<m[3][3]<<"  ";
