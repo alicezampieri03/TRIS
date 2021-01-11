@@ -118,18 +118,18 @@ int main(void){
 	int i=0, j=0, conta=0, vitt=0, x, y;
 	char giocatore1[10], giocatore2[10];
 	
-	ofstream file;
-	file.open("PartitaTris.txt");
+	fstream file;
+	file.open("PartitaTris.txt", ios::in);
 	
 	
 	cout<<"griglia vuota"<<endl;
 	griglia();
 
 	cout<<"giocatore 1 inserisci il nome: ";
-	cin>>giocatore1;
+	file>>giocatore1;
 	cout<<giocatore1<< "usa la X" <<endl;
 	cout<<"giocatore 2 inserisci il nome: ";
-	cin>>giocatore2;
+	file>>giocatore2;
 	cout<<giocatore2<<" usa la O"<<endl;
 	
 	do{
@@ -168,13 +168,13 @@ int main(void){
 	vitt=controllo_v(m);
 	
 	if (vitt==1){
-		cout<<giocatore1<<" hai vinto!"<<endl;
+		file<<giocatore1<<" hai vinto!"<<endl;
 	}
 	else if(vitt==2){
-		cout<<giocatore2<<" hai vinto!"<<endl;
+		file<<giocatore2<<" hai vinto!"<<endl;
 	}
 	else{
-		cout<<"nessuno ha vinto!"<<endl;
+		file<<"nessuno ha vinto!"<<endl;
 	}
 	
 	file.close();
