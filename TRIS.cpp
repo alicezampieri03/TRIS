@@ -44,35 +44,33 @@ void griglia(char matrix[][3]){
 }
 
 int controllo_v(char m[3][3]){
-	int i=0, j=0;
- 	for(i=0;i<3;i++){
- 		for(j=0;j<3;j++){
+ 	for(int i=0;i<3;i++){
  			//controllo righe
- 			if(i==1 && m[i][j]=='X' && m[i-1][j]=='X' && m[i+1][j]=='X'){//i=1 perchè inzio dal mezzo
+ 			if(m[i][0]=='X' && m[i][1]==m[i][0] &&  m[i][2]==m[i][1]){
 	 			return 1;//vince il giocatore 1
 	 		}
-			else if (i==1 && m[i][j]=='O' && m[i-1][j]=='O' && m[i+1][j]=='O'){
+			else if (m[i][0]=='O' && m[i][1]==m[i][0] &&  m[i][2]==m[i][1]){
 	 			return 2;//vince il giocatore 2
 	 		}
-	 		//controllo colonne
-	 		else if(j==1 && m[i][j]=='X' && m[i][j-1]=='X' && m[i][j+1]=='X'){//j=1 perchè inzio dal mezzo
+	 		/*//controllo colonne
+	 		else if(m[i][0]=='X' && m[i][1]==m[i][0] &&  m[i][2]==m[i][1]){
 	 			return 1;//vince il giocatore 1
 	 		}
 			else if(j==1 && m[i][j]=='O' && m[i][j-1]=='O' && m[i][j+1]=='O'){
 	 			return 2;//vince il giocatore 2
-	 		}
+	 		}*/
 	 		//controllo diagonale 1
-	 		else if (i==1 && j==1 && m[i][j]=='X' && m[i+1][j+1]=='X' && m[i-1][j-1]=='X'){
+	 		else if (m[i][0]=='X' && m[i+1][1]==m[i][0] && m[i+2][2]==m[i+1][1]){
 				return 1;//vince il giocatore 1
 	 		}
-			else if (i==1 && j==1 && m[i][j]=='O' && m[i+1][j+1]=='O' && m[i-1][j-1]=='O'){
+			else if (m[i][0]=='O' && m[i+1][1]==m[i][0] && m[i+2][2]==m[i+1][1]){
 	 			return 2;//vince il giocatore 2
 	 		}			
 			//controllo diagonale 2
-			else if (i==1 && j==1 && m[i][j]=='X' && m[i-1][j+1]=='X' && m[i+1][j-1]=='X'){
+			else if (m[i][0]=='X' && m[i-1][1]==m[i][0] && m[i-2][2]==m[i-1][1]){
 				return 1;//vince il giocatore 1
 	 		}
-			else if (i==1 && j==1 && m[i][j]=='O' && m[i-1][j+1]=='O' && m[i+1][j-1]=='O'){
+			else if (m[i][0]=='O' && m[i-1][1]==m[i][0] && m[i-2][2]==m[i-1][1]){
 	 			return 2;//vince il giocatore 2
 	 		}
 	 		else{
@@ -80,14 +78,13 @@ int controllo_v(char m[3][3]){
 			}
 		}
 	} 
-}
 
 int controllo_v(char m[3][3]);
-void griglia();
+void griglia(char m[3][3]);
 
 
 int main(void){
-	char m[3][3] = {{'\0'}}; // V = vuoto
+	char m[3][3] = {{'\0'}}; //matrice vuota
 	int i=0, j=0, conta=0, vitt=0, x, y;
 	char giocatore1[10], giocatore2[10];
 	bool exit = false;
@@ -96,11 +93,11 @@ int main(void){
 
 	cout<<"giocatore 1 inserisci il nome: ";
 	cin>>giocatore1;
-	file>>giocatore1;
+	file<<giocatore1<<endl;
 	cout<<giocatore1<<" usa la X" <<endl;
 	cout<<"giocatore 2 inserisci il nome: ";
 	cin>>giocatore2;
-	file>>giocatore2;
+	file<<giocatore2<<endl;
 	cout<<giocatore2<<" usa la O"<<endl;
 	
 	do{
@@ -108,59 +105,47 @@ int main(void){
 		cin>>x;
 		cin>>y;
 		if((m[x][y]=='X')||(m[x][y]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
-			cout<<"1 Errore, riprova";
+			cout<<"Errore, riprova"<<endl;
 		}
 		else{
 			m[x][y]='X';
 			conta++;//contatore delle caselle riempite
 		}
-		//system("cls");//pulisce lo schemro
 		griglia(m);
-		
-		if (conta == 9){
-			exit = true; // se diventa vero ho riempito tutte le caselle e quindi esco dal ciclo
-		}
 		vitt=controllo_v(m);
-		if (vitt==1){
-			cout<<giocatore1<<" hai vinto!"<<endl;
-		}
-		else if(vitt==2){
-			cout<<giocatore2<<" hai vinto!"<<endl;
-		}
-		else{
-			cout<<"nessuno ha vinto!"<<endl;
+		if (conta==9 || vitt){
+			exit=true; // se diventa vero ho riempito tutte le caselle e quindi esco dal ciclo
 		}
 		
 		cout<<giocatore2<<" dove vuoi inserire la O (x,y) : ";
 		cin>>x;
 		cin>>y;		
 		if((m[x][y]=='X')||(m[x][y]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
-			cout<<"Errore, riprova";
+			cout<<"Errore, riprova"<<endl;
 		}
 		else{
 			m[x][y]='O';
 			conta++;//contatore delle caselle riempite
 		}
-		cout<<conta;
-		//system("cls");
 		griglia(m);
-		
-		if (conta == 9){
-			exit = true; // se diventa vero ho riempito tutte le caselle e quindi esco dal ciclo
-		}
 		vitt=controllo_v(m);
-		if (vitt==1){
-			cout<<giocatore1<<" hai vinto!"<<endl;
-			file>>giocatore1;
+		if (conta==9 || vitt){
+			exit=true; // se diventa vero ho riempito tutte le caselle e quindi esco dal ciclo
 		}
-		else if(vitt==2){
-			cout<<giocatore2<<" hai vinto!"<<endl;
-			file>>giocatore2;
-		}
-		else{
-			cout<<"nessuno ha vinto!"<<endl;
-		}
+		
 	}while(!exit);//ripeto finchè non riempio le caselle
 	
+	if(vitt==1){
+		cout<<giocatore1<<" hai vinto";
+		file<<giocatore1<<endl;
+	}
+	else if(vitt==2){
+		cout<<giocatore2<<" hai vinto";
+		file<<giocatore2<<endl;
+	}
+	else{
+		cout<<"nessuno ha vinto";
+	}
+		
 	file.close();
 }
