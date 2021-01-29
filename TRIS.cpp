@@ -4,7 +4,7 @@
 #include<cmath>
 #include<fstream>
 using namespace std;
-/*
+
 class Tris{
 	private:
 		char m[3][3];
@@ -19,7 +19,7 @@ class Tris{
 		int getY(void);
 		int controllo_v();
 		
-};*/
+};
 
 void griglia(char matrix[][3]){
     cout << "tris"<<endl;
@@ -52,13 +52,13 @@ int controllo_v(char m[3][3]){
 			else if (m[i][0]=='O' && m[i][1]==m[i][0] &&  m[i][2]==m[i][1]){
 	 			return 2;//vince il giocatore 2
 	 		}
-	 		/*//controllo colonne
+	 		//controllo colonne
 	 		else if(m[i][0]=='X' && m[i][1]==m[i][0] &&  m[i][2]==m[i][1]){
 	 			return 1;//vince il giocatore 1
 	 		}
-			else if(j==1 && m[i][j]=='O' && m[i][j-1]=='O' && m[i][j+1]=='O'){
+			else if(m[i][0]=='O' && m[i][2-1]=='O' && m[i][2+1]=='O'){
 	 			return 2;//vince il giocatore 2
-	 		}*/
+	 		}
 	 		//controllo diagonale 1
 	 		else if (m[i][0]=='X' && m[i+1][1]==m[i][0] && m[i+2][2]==m[i+1][1]){
 				return 1;//vince il giocatore 1
@@ -106,6 +106,9 @@ int main(void){
 		cin>>y;
 		if((m[x][y]=='X')||(m[x][y]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
 			cout<<"Errore, riprova"<<endl;
+			cout<<giocatore1<<" dove vuoi inserire la X (x,y) : ";
+			cin>>x;
+			cin>>y;
 		}
 		else{
 			m[x][y]='X';
@@ -122,6 +125,9 @@ int main(void){
 		cin>>y;		
 		if((m[x][y]=='X')||(m[x][y]=='O')||(x>2)||(x<0)||(y>2)||(y<0)){//controllo che la casella selezionata sia effettivamente vuota
 			cout<<"Errore, riprova"<<endl;
+			cout<<giocatore2<<" dove vuoi inserire la O (x,y) : ";
+			cin>>x;
+			cin>>y;
 		}
 		else{
 			m[x][y]='O';
