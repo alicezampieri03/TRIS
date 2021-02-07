@@ -4,7 +4,7 @@
 #include<cmath>
 #include<fstream>
 using namespace std;
-
+/*
 class Tris{
 	private:
 		char m[3][3];
@@ -19,7 +19,7 @@ class Tris{
 		int getY(void);
 		int controllo_v();
 		
-};
+};*/
 
 void griglia(char matrix[][3]){
     cout << "tris"<<endl;
@@ -53,24 +53,24 @@ int controllo_v(char m[3][3]){
 	 			return 2;//vince il giocatore 2
 	 		}
 	 		//controllo colonne
-	 		else if(m[i][0]=='X' && m[i][1]==m[i][0] &&  m[i][2]==m[i][1]){
+	 		else if(m[0][i]=='X' && m[0][1]==m[0][i] &&  m[0][2]==m[0][1]){
 	 			return 1;//vince il giocatore 1
 	 		}
-			else if(m[i][0]=='O' && m[i][2-1]=='O' && m[i][2+1]=='O'){
+			else if(m[0][i]=='O' && m[0][2-1]=='O' && m[0][2+1]=='O'){
 	 			return 2;//vince il giocatore 2
 	 		}
 	 		//controllo diagonale 1
-	 		else if (m[i][0]=='X' && m[i+1][1]==m[i][0] && m[i+2][2]==m[i+1][1]){
+	 		else if (m[i][0]=='X' && m[1][1]==m[i][0] && m[2][2]==m[1][1]){
 				return 1;//vince il giocatore 1
 	 		}
-			else if (m[i][0]=='O' && m[i+1][1]==m[i][0] && m[i+2][2]==m[i+1][1]){
+			else if (m[i][0]=='O' && m[1][1]==m[i][0] && m[2][2]==m[1][1]){
 	 			return 2;//vince il giocatore 2
 	 		}			
 			//controllo diagonale 2
-			else if (m[i][0]=='X' && m[i-1][1]==m[i][0] && m[i-2][2]==m[i-1][1]){
+			else if (m[i][2]=='X' && m[1][1]==m[i][2] && m[2][0]==m[i][2]){
 				return 1;//vince il giocatore 1
 	 		}
-			else if (m[i][0]=='O' && m[i-1][1]==m[i][0] && m[i-2][2]==m[i-1][1]){
+			else if (m[i][2]=='O' && m[1][1]==m[i][2] && m[2][0]==m[i][2]){
 	 			return 2;//vince il giocatore 2
 	 		}
 	 		else{
