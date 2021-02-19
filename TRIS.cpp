@@ -18,7 +18,6 @@ class Tris{
 		int getX(void);
 		int getY(void);
 		int controllo_v();
-		
 };*/
 
 void griglia(char matrix[][3]){
